@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col mt-5">
+      <h1 class="fw-bold text-center">Form Ubah Contact</h1>
+      <% if (typeof errors != 'undefined') { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> Terdapat kesalahan dalam pengisian formulir.
+        Silakan periksa kembali:
+        <ul>
+          <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-md-5 pb-5">
+      <form action="/contact?_method=PUT" method="post">
+        <input type="hidden" name="_id" value="<%= contact._id %>" />
+        <input
+          type="hidden"
+          name="oldNama"
+          value="<%= contact.oldNama || contact.nama %>"
+        />
+        <div class="mb-3">
+          <label for="nama" class="form-label">Nama</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nama"
+            name="nama"
+            value="<%= contact.nama %>"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name="email"
+            value="<%= contact.email %>"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="noHp" class="form-label">No HP</label>
+          <input
+            type="text"
+            class="form-control"
+            id="noHp"
+            name="noHp"
+            value="<%= contact.noHp %>"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ubah Data</button>
+      </form>
+    </div>
+  </div>
+</div>
